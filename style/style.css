@@ -1,0 +1,129 @@
+body {
+	/*background-image: url('../images/cream_pixels.png');*/
+	background-color: #fff;
+	font-family: 'Lato', sans-serif;
+	font-family: 'Roboto', sans-serif;
+	font-family: 'Anton', sans-serif;
+}
+nav {
+	background-color: #fff;
+}
+nav a {
+	font-weight: bold;
+	color: rgba(249,3,148,1);
+}
+nav a:hover {
+	color: #00D7AB;
+}
+#front_logo {
+	height: 50px;
+}
+#greeter_slide {
+	position: relative;
+	bottom: 50vh;
+}
+#greeter_slide span {
+	color: #F90394;
+	opacity: 0;
+	text-transform: uppercase;
+	font-size: 100px;
+	position: absolute;
+	transform:scale(.75,1);
+	text-shadow: 0px 1px 2px rgba(255, 255, 255, 1);
+	letter-spacing: 10px;
+	left: 200px;
+}
+#greeter_slide img {
+	height: 280px;
+	position: absolute;
+	left: 200px;
+	top: -120px;
+	opacity: 0;
+}
+#greeter_slide p {
+	color: rgba(146,0,138,1);
+	font-family: 'Lobster', sans-serif;
+	font-size: 60px;
+	position: absolute;
+	top: 800px;
+	text-shadow: 3px 3px 5px rgba(255, 255, 255, 1);
+}
+#row1 {
+	padding: 100px 0px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: rgba(146,0,138,1);
+}
+#row2 {
+	background-color: #F90394;
+	color: #fff;
+	font-family: Arial, Helvetica, sans-serif;
+	padding: 80px;
+}
+#row3 {
+	background-color: #00D7AB;
+	color: #fff;
+	font-family: Arial, Helvetica, sans-serif;
+	padding: 80px;
+}
+#row2 img, #row3 img {
+	margin-left: calc(50% - 150px);
+}
+#row4 {
+	background-color: #fff;
+}
+#row4 .card {
+	background-color: rgba(146,0,138,1);
+	color: #fff;
+	font-family: Arial, Helvetica, sans-serif;
+	transition: 1s;
+}
+#row4 p {
+	text-align: center;
+}
+#row4 .card:hover {
+	background-color: #F90394;
+}
+footer {
+	padding: 20px;
+}
+@media screen and (max-width:1400px){
+	#greeter_slide {
+		bottom: 35vh;
+	}
+}
+@media screen and (max-width:1199px){
+	#greeter_slide {
+		bottom: 27.5vh;
+		left: -5vw;
+	}
+}
+@media screen and (max-width:991px){
+	#greeter_slide {
+		bottom: 22vh;
+    	left: -13vw;
+    	transform: scale(.75);
+	}
+}
+@media screen and (max-width:767px){
+	#greeter_slide {
+		transform: scale(.4);
+		bottom: 18vh;
+	}
+	#greeter_slide span {
+		margin-left: -100px;
+	}
+	#greeter_slide img {
+		margin-left: -80px;
+	}
+}
+@media screen and (max-width:575px){
+	#greeter_slide span, #greeter_slide p {
+		display: none;
+	}
+	#greeter_slide img {
+	    margin-left: calc(50% - 400px);
+	}
+	#greeter_slide {
+		bottom: 9vh;
+	}
+}
