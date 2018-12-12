@@ -1,9 +1,8 @@
-#container-fluid {
+#title {
 text-align: center;
-background-image: url("../images/theme_or_photo_round_cakes/toto.jpg");
-width: 100%;
+background-color: hotpink;
 height: 20%;
-background-repeat: no-repeat;
+width: 100%;
 }
 
 .contact, .follow, .address{
