@@ -16,7 +16,10 @@ $(document).ready(function(){
 var feed = new Instafeed({
     get: 'user',
     userId:9720192134 , 
-    accessToken: '9720192134.1677ed0.543018e5966e40ef8779ca1e199f9b31'
+    limit:4,
+    accessToken: '9720192134.1677ed0.543018e5966e40ef8779ca1e199f9b31',
+    //resolution: 'standard_resolution',
+    resolution: 'low_resolution',
   });
   feed.run();
 });
