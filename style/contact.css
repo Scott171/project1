@@ -1,6 +1,6 @@
 .title {
   text-align: center;
-  background-color: hotpink;
+ 
   width: fit-content;
   height: fit-content;
   padding: 20px;
@@ -8,8 +8,8 @@
   }
   
   h2{
-    background-color: hotpink;
-    color: white;
+   
+
   width: fit-content;
   height: fit-content;
   }
