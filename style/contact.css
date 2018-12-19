@@ -16,8 +16,7 @@
   
   .contact, .follow, .address{
     color: purple;
-      width: 400px;
-      height: 300px;
+      width: 100%;
       padding: 10px;
       border: 5px dotted purple;
       margin: 0;
@@ -25,8 +24,8 @@
   
   .info{
     color: hotpink;
-    width: 400px;
-      height: 100px;
+    width: 100%;
+      
       padding: 10px;
       border: 5px dotted hotpink;
       margin: 0;
