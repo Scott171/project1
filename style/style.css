@@ -83,6 +83,18 @@ nav a:hover {
 #row4 .card:hover {
 	background-color: #F90394;
 }
+#row5{
+background-color: darkmagenta;
+}
+#instafeed{
+	margin-left:22px;
+	margin-top:20px;
+	margin-bottom:20px;
+}
+#instafeed a{
+	margin:9px;
+}
+
 footer {
 	padding: 20px;
 }
