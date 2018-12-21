@@ -15,9 +15,9 @@ $(document).ready(function(){
 
 var feed = new Instafeed({
     get: 'user',
-    userId:9720192134 , 
+    userId: '3316396077' , 
     limit:4,
-    accessToken: '9720192134.1677ed0.543018e5966e40ef8779ca1e199f9b31',
+    accessToken: '3316396077.1677ed0.ff6adc3d3a15417098534089f24577a7',
     //resolution: 'standard_resolution',
     resolution: 'low_resolution',
   });
