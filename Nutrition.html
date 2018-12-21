@@ -14,68 +14,107 @@
 </head>
 
 <body>
-        <nav class="navbar navbar-expand-lg">
-                <a class="navbar-brand" href="#"><img src="images/clear_logo.png" alt="Cheat Day Bakery" id="front_logo"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-item nav-link" href="index.html">Home</a>
-                        <a class="nav-item nav-link" href="about.html">About Us</a>
-                        <a class="nav-item nav-link" href="menu.html">Menu</a>
-                        <a class="nav-item nav-link" href="Nutrition.html">Nutrition Facts</a>
-                        <a class="nav-item nav-link" href="FAQ.html">FAQs</a>
-                        <a class="nav-item nav-link" href="gallery.html">Gallery</a>
-                        <a class="nav-item nav-link" href="contact.html">Contact Us</a>
-                    </div>
-                </div>
-            </nav>
-            <hr>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#"><img src="images/clear_logo.png" alt="Cheat Day Bakery" id="front_logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="index.html">Home</a>
+                <a class="nav-item nav-link" href="about.html">About Us</a>
+                <a class="nav-item nav-link" href="menu.html">Menu</a>
+                <a class="nav-item nav-link" href="Nutrition.html">Nutrition Facts</a>
+                <a class="nav-item nav-link" href="FAQ.html">FAQs</a>
+                <a class="nav-item nav-link" href="gallery.html">Gallery</a>
+                <a class="nav-item nav-link" href="contact.html">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+    <hr>
     <!-- Linking jQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin= "anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+     <!-- Buttons in our array -->
+     <div id="buttons-view"></div>
 
-    <input type="text"></input>
-    <button type="submit" class="btn btn-primary">Submit</button>
-        
+    
+    
+    <form id="cheatDay">
+            <label for="other">Search for what we dont show</label><br>
+            <input type="text" id="food"><br>
+
+            <!-- Button triggers new to be added -->
+            <input id="other" type="submit" value="SEARCH">
+        </form>
+
+    
+  
+
 
     <script>
-        // var deserts = ["cupcakes", "brownies", "cakes", "cookies", "bundt cake", "cream cheese frosting", "chocolate frosting", "koko samoa frosting", "coconut frosting", "penut butter frosting" ]
-        // var queryURL = "https://www.nutritionix.com/food/search?q=" + deserts +  "df832208c5f6294a6c0453e21c518890";
-        // // https://www.nutritionix.com/food/cupcake
-        var deserts = ["cupcakes"]
-        console.log(deserts)
-        function main()
-         $(document).on("click", "button", function () {
-                    office = $(this).attr("data-name");
-                    var queryURL = "https://www.nutritionix.com/food/search?q=" + deserts +  "df832208c5f6294a6c0453e21c518890";
-                  
-                    $.ajax({
-                        url: queryURL,
-                        method: "GET"
-                    }).then(function (response) {
 
-                        var results = response.data;
+$(document).ready(function (){
+        var deserts = ["cupcakes", "brownies", "cakes", "cookies", "bundt cake", "cream cheese frosting", "chocolate frosting", "koko samoa frosting", "coconut frosting", "penut butter frosting"];
+        var queryURL = "http://www.nutritionix.com/search?q=" + deserts + "&api_key=df832208c5f6294a6c0453e21c518890";
 
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-            // We store all of the retrieved data 
-            .then(function (response) {
 
-                // Log the url
-                console.log(queryURL);
 
-                // Log the resulting object
-                console.log(response);
+     
+        
 
-                main();
+        console.log(deserts);
+        console.log(queryURL);
+console.log(toppings);
+console.log(desert);
+        
+            
 
-                
+
+            $(document).on("click", "button", function () {
+                food = $(this).attr("data-name");
+
+                for (var i = 0; i < deserts.length; i++)
+               
+
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                    // store data
+                }).then(function (response) {
+                    toppings();
+                    desert();
+                    
+
+                })
             })
+
+        function toppings(){
+            var topping= {
+                creamCheese: "cream cheese",
+                coconut: "cocunut",
+                chocolate: "chocolate",
+                pennutButter: "penut butter",
+            }
+        }
+        function desert(){
+            var snacks={
+                cupcake: "cupcake",
+                brownies: "brownies",
+                cakes: "cakes",
+                cookies: "cookies",
+                bundtCake: "bundtCake"
+
+            }
+
+        }
+
+            })
+
+
     </script>
 
     <!-- Optional JavaScript -->
