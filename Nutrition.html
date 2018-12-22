@@ -14,59 +14,119 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#"><img src="images/clear_logo.png" alt="Cheat Day Bakery" id="front_logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="index.html">Home</a>
+                <a class="nav-item nav-link" href="about.html">About Us</a>
+                <a class="nav-item nav-link" href="menu.html">Menu</a>
+                <a class="nav-item nav-link" href="Nutrition.html">Nutrition Facts</a>
+                <a class="nav-item nav-link" href="FAQ.html">FAQs</a>
+                <a class="nav-item nav-link" href="gallery.html">Gallery</a>
+                <a class="nav-item nav-link" href="contact.html">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+    <hr>
     <!-- Linking jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin= "anonymous"></script>
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+    <!-- Buttons in our array -->
+    <div id="buttons-view"></div>
+    <div id="buttons"></div>
+
+
+
+    <form id="cheatDay">
+        <label for="other">Search for what we dont show</label><br>
+        <input type="text" id="other"><br>
+
+        <!-- Button triggers new to be added -->
+        <input id="search" type="submit" value="SEARCH">
+    </form>
 
     <script>
-        var deserts = ["cupcakes", "brownies", "cakes", "cookies", "Bundt-cake",  ]
-        var queryURL = "https://www.nutritionix.com/search?q=" + deserts + "df832208c5f6294a6c0453e21c518890";
 
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-            // We store all of the retrieved data 
-            .then(function (response) {
 
-                // Log the url
-                console.log(queryURL);
+        var deserts = ["cupcakes "," brownies " , "cakes" , "cookies" , "bundt cake" , "cream cheese frosting" , "chocolate frosting" , "koko samoa frosting" , "coconut frosting" , "penut butter frosting" ];
+        var queryURL = "https://api.edamam.com/search?q=" + deserts + "&app_key=f104c4b979a95ae85e141313a0e2cc82&app_id=797b9472";
+       
+        $(document).ready(function () {
+            showButtons();
+            // Function for displaying movie data
+            function showButtons() {
 
-                // Log the resulting object
-                console.log(response);
+                // Deleting the movies prior to adding new movies
+                // (this is necessary otherwise you will have repeat buttons)
+                $("#buttons-view").empty();
+                // Looping through the array of foods at cheatday
+                for (var i = 0; i < deserts.length; i++) {
+                    // Creates  button tag
+                    var button = $("<button>");
+                    // Adding a class to our arrays buttons
+                    button.addClass("array-btn");
+                    // Adding a data-attribute
+                    button.attr("data-name", deserts[i]);
+                    // Providing the initial button text
+                    button.text(deserts[i]);
+                    // Adding the button to the buttons-view div
+                    $("#buttons-view").append(button);
+
+
+                }
+            };
+            console.log(deserts);
+            console.log(queryURL);
+
+            $(document).on("click", "button", function () {
+                food = $(this).attr("data-name");
+                var queryURL = "https://api.edamam.com/search?q=" + food + "&app_id=797b9472&app_key=f104c4b979a95ae85e141313a0e2cc82&from=0&to=2"
+
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                    // store data
+                }).then(function (response) {
+                    var firstResult = response.hits[0];
+                    var calories = firstResult.recipe.calories;
+                    var yield = firstResult.recipe.yield;
+                    var serving= Math.round(calories/yield);
+
+                    $("#buttons").html("<div>" + serving + "</div>")
+                    
+
+                    console.log(serving);
+                  
+                    console.log(calories);
+                    console.log(response);
+                    console.log(firstResult);
+                   
+                
+                })
             })
+        
+        })
     </script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script> -->
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Anton|Lato|Lobster|Roboto" rel="stylesheet">
 </body>
-<nav class="navbar navbar-expand-lg">
-    <a class="navbar-brand" href="#"><img src="images/clear_logo.png" alt="Cheat Day Bakery" id="front_logo"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link" href="index.html">Home</a>
-            <a class="nav-item nav-link" href="about.html">About Us</a>
-            <a class="nav-item nav-link" href="menu.html">Menu</a>
-            <a class="nav-item nav-link" href="Nutrition.html">Nutrition Facts</a>
-            <a class="nav-item nav-link" href="FAQ.html">FAQs</a>
-            <a class="nav-item nav-link" href="gallery.html">Gallery</a>
-            <a class="nav-item nav-link" href="contact.html">Contact Us</a>
-        </div>
-    </div>
-</nav>
-<hr>
+
 
 
 
