@@ -37,90 +37,89 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
-     <!-- Buttons in our array -->
-     <div id="buttons-view"></div>
 
-    
-    
+    <!-- Buttons in our array -->
+    <div id="buttons-view"></div>
+    <div id="buttons"></div>
+
+
+
     <form id="cheatDay">
-            <label for="other">Search for what we dont show</label><br>
-            <input type="text" id="food"><br>
+        <label for="other">Search for what we dont show</label><br>
+        <input type="text" id="other"><br>
 
-            <!-- Button triggers new to be added -->
-            <input id="other" type="submit" value="SEARCH">
-        </form>
-
-    
-  
-
+        <!-- Button triggers new to be added -->
+        <input id="search" type="submit" value="SEARCH">
+    </form>
 
     <script>
 
-$(document).ready(function (){
-        var deserts = ["cupcakes", "brownies", "cakes", "cookies", "bundt cake", "cream cheese frosting", "chocolate frosting", "koko samoa frosting", "coconut frosting", "penut butter frosting"];
-        var queryURL = "http://www.nutritionix.com/search?q=" + deserts + "&api_key=df832208c5f6294a6c0453e21c518890";
+
+        var deserts = ["cupcakes "," brownies " , "cakes" , "cookies" , "bundt cake" , "cream cheese frosting" , "chocolate frosting" , "koko samoa frosting" , "coconut frosting" , "penut butter frosting" ];
+        var queryURL = "https://api.edamam.com/search?q=" + deserts + "&app_key=f104c4b979a95ae85e141313a0e2cc82&app_id=797b9472";
+       
+        $(document).ready(function () {
+            showButtons();
+            // Function for displaying movie data
+            function showButtons() {
+
+                // Deleting the movies prior to adding new movies
+                // (this is necessary otherwise you will have repeat buttons)
+                $("#buttons-view").empty();
+                // Looping through the array of foods at cheatday
+                for (var i = 0; i < deserts.length; i++) {
+                    // Creates  button tag
+                    var button = $("<button>");
+                    // Adding a class to our arrays buttons
+                    button.addClass("array-btn");
+                    // Adding a data-attribute
+                    button.attr("data-name", deserts[i]);
+                    // Providing the initial button text
+                    button.text(deserts[i]);
+                    // Adding the button to the buttons-view div
+                    $("#buttons-view").append(button);
 
 
-
-     
-        
-
-        console.log(deserts);
-        console.log(queryURL);
-console.log(toppings);
-console.log(desert);
-        
-            
-
+                }
+            };
+            console.log(deserts);
+            console.log(queryURL);
 
             $(document).on("click", "button", function () {
                 food = $(this).attr("data-name");
-
-                for (var i = 0; i < deserts.length; i++)
-               
+                var queryURL = "https://api.edamam.com/search?q=" + food + "&app_id=797b9472&app_key=f104c4b979a95ae85e141313a0e2cc82&from=0&to=2"
 
                 $.ajax({
                     url: queryURL,
                     method: "GET"
                     // store data
                 }).then(function (response) {
-                    toppings();
-                    desert();
+                    var firstResult = response.hits[0];
+                    var calories = firstResult.recipe.calories;
+                    var yield = firstResult.recipe.yield;
+                    var serving= Math.round(calories/yield);
+
+                    $("#buttons").html("<div>" + serving + "</div>")
                     
 
+                    console.log(serving);
+                  
+                    console.log(calories);
+                    console.log(response);
+                    console.log(firstResult);
+                   
+                
                 })
             })
-
-        function toppings(){
-            var topping= {
-                creamCheese: "cream cheese",
-                coconut: "cocunut",
-                chocolate: "chocolate",
-                pennutButter: "penut butter",
-            }
-        }
-        function desert(){
-            var snacks={
-                cupcake: "cupcake",
-                brownies: "brownies",
-                cakes: "cakes",
-                cookies: "cookies",
-                bundtCake: "bundtCake"
-
-            }
-
-        }
-
-            })
-
-
+        
+        })
     </script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script> -->
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
