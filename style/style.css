@@ -144,3 +144,13 @@ footer {
 		bottom: 9vh;
 	}
 }
+.form-group-card{
+	padding: 10px;
+}
+.btn{background-color: #F90394;
+border-color: #F90394;
+}
+.btn:hover{
+	background-color: darkmagenta;
+	border-color: darkmagenta;
+}
